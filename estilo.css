@@ -1,9 +1,48 @@
+@keyframes brillo {
+    0% {
+        filter: brightness(1);
+    }
+    50% {
+        filter: brightness(2);
+    }
+    100% {
+        filter: brightness(1);
+    }
+}
 body {
     font-family: sans-serif;
 }
-
+#videoContainer {
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    z-index: -10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 #emision {
     width: 100%;
     height: 100%;
-    z-index: -0;
+    transition: transform 0.3s;
+    transform-origin: center center;
+}
+#pantallaInfo {
+    position: fixed;
+    background-color: #ffffffa1;
+    backdrop-filter: blur(9px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 300;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
 }

@@ -7,14 +7,26 @@
         <link rel="stylesheet" href="/estilo.css" />
     </head>
     <body>
-        <h1>Recibir Pantalla</h1>
-        <p id="idNum" onclick="copyNum()">Cargando...</p>
-        <video
-            src="https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-            id="emision"
-            autoplay
-            muted
-        ></video>
+        <section id="pantallaInfo">
+            <h1>Recibir Pantalla</h1>
+            <b id="urlPl"
+                >https://pantalla.systemconnect.lucaspeinado.es/enviar</b
+            >
+            <p id="idNum" onclick="copyNum()">Cargando...</p>
+        </section>
+        <section id="videoContainer">
+            <video
+                src="/ready.webm"
+                id="emision"
+                onclick="fullYAudio()"
+                muted
+                playsinline
+                loop
+                autoplay
+                oncontextmenu="return false;
+                "
+            ></video>
+        </section>
     </body>
     <script src="https://unpkg.com/peerjs@1.5.5/dist/peerjs.min.js"></script>
     <script src="/recibir.js"></script>
