@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Recibir Pantalla</title>
+        <link rel="stylesheet" href="/estilo.css" />
+    </head>
+    <body>
+        <h1>Recibir Pantalla</h1>
+        <p id="idNum" onclick="copyNum()">Cargando...</p>
+        <video
+            src="https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            id="emision"
+            autoplay
+            muted
+        ></video>
+    </body>
+    <script src="https://unpkg.com/peerjs@1.5.5/dist/peerjs.min.js"></script>
+    <script src="/recibir.js"></script>
+</html>
