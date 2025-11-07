@@ -1,13 +1,24 @@
-var peer = new Peer({});
-const emision = document.getElementById("emision");
-const pantallaInfo = document.getElementById("pantallaInfo");
-const urlPl = document.getElementById("urlPl");
+function genPin() {
+  const dentro = "ABCDEFGHJKLMNPQRSTUVWXYZ1234567890";
+  var res = "";
+  for (var i = 0; i < 6; i++) {
+    var tmpIPin = Math.floor(Math.random() * dentro.length);
+    res = res + dentro.charAt(tmpIPin);
+  }
+  return res;
+}
 
 function urlHost() {
   var fullUrl = window.location.host + "/enviar";
   urlPl.innerHTML = fullUrl;
   return;
 }
+
+const pinID = genPin();
+var peer = new Peer(pinID);
+const emision = document.getElementById("emision");
+const pantallaInfo = document.getElementById("pantallaInfo");
+const urlPl = document.getElementById("urlPl");
 
 var pbID = null;
 
@@ -25,10 +36,6 @@ function copyNum() {
   return;
 }
 
-function perspectivaIn(scaleValue) {
-  emision.style.transform = `scale(${scaleValue})`;
-}
-
 peer.on("connection", function (conn) {
   conn.on("data", function (data) {
     console.log(data);
@@ -37,22 +44,29 @@ peer.on("connection", function (conn) {
 
 peer.on("call", function (call) {
   pantallaInfo.style.display = "none";
-  emision.style.animation = "brillo 0.6s infinite";
-  perspectivaIn(0.6);
   call.answer();
   call.on(
     "stream",
     function (remoteStream) {
       emision.srcObject = remoteStream;
-      setTimeout(() => {
-        emision.style.animation = "none";
-        perspectivaIn(1);
-      }, 2500);
+      emision.muted = false;
     },
     function (err) {
       console.log("Failed to get local stream", err);
     },
   );
+
+  call.on("close", function () {
+    console.log("Desconectado");
+    pantallaInfo.style.display = "flex";
+    emision.srcObject = null; // O un video de espera
+  });
+
+  call.on("error", function (err) {
+    console.log("Error: ", err);
+    pantallaInfo.style.display = "flex";
+    emision.srcObject = null;
+  });
 });
 
 function fullYAudio() {

@@ -19,18 +19,16 @@ form.addEventListener("submit", async function (e) {
   try {
     var mediaStream = await navigator.mediaDevices.getDisplayMedia({
       video: true,
-      audio: true,
-    });
+      audio: false,
+    }); 
     var call = peer.call(peerID, mediaStream);
+
+    call.on("close", function () {
+      alert("Se ha perdido la conexión con la pantalla");
+      window.location.reload();
+    });
   } catch (error) {
     alert("Error de conexión: " + error);
     return;
-  } finally {
-    call.on("stream", function (remoteStream) {
-      var video = document.createElement("video");
-      video.srcObject = remoteStream;
-      video.play();
-      document.body.appendChild(video);
-    });
   }
 });

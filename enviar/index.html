@@ -4,12 +4,18 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Enviar Pantalla</title>
+        <link rel="stylesheet" href="/estilo.css" />
     </head>
     <body>
         <h1>Enviar Pantalla</h1>
         <form>
-            <input id="idHold" /><button id="conectar">Conectar</button>
+            <input id="idHold" placeholder="ID de la pantalla" /><button
+                id="conectar"
+            >
+                Conectar
+            </button>
         </form>
+        <p>Los navegadores móviles no son compatibles.</p>
     </body>
     <script src="https://unpkg.com/peerjs@1.5.5/dist/peerjs.min.js"></script>
     <script src="/enviar.js"></script>
