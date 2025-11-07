@@ -58,7 +58,7 @@ peer.on("call", function (call) {
 function fullYAudio() {
   emision.muted = false;
   emision.play();
-  if (!document.fullscreenElement) {
+  /* if (!document.fullscreenElement) {
     if (emision.requestFullscreen) {
       emision.requestFullscreen();
     } else if (emision.webkitRequestFullscreen) {
@@ -78,5 +78,5 @@ function fullYAudio() {
       // IE11
       document.msExitFullscreen();
     }
-  }
+    }*/
 }
