@@ -1,5 +1,5 @@
 var peer = new Peer({});
-console.log("v1.1");
+console.log("v1.1a");
 
 const idHold = document.getElementById("idHold");
 const conectar = document.getElementById("conectar");
