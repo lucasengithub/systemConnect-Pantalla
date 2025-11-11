@@ -61,7 +61,8 @@ peer.on("call", function (call) {
     "stream",
     function (remoteStream) {
       emision.srcObject = remoteStream;
-      emision.muted = false;
+      emision.play();
+      emision.muted = true;
     },
     function (err) {
       console.log("Failed to get local stream", err);
