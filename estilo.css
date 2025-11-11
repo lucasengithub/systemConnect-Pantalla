@@ -22,9 +22,10 @@ body {
     height: 100vh;
     background-color: black;
     z-index: -10;
-    display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 1s;
+    display: none;
 }
 #emision {
     width: 100%;
@@ -34,15 +35,35 @@ body {
 }
 #pantallaInfo {
     position: fixed;
-    background-color: #ffffffa1;
-    backdrop-filter: blur(9px);
+    background: #ffffff;
+    background: linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.8) 22%,
+        rgba(255, 255, 255, 0) 100%
+    );
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     z-index: 300;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    bottom: 0;
+    left: 0;
     width: 100vw;
+    padding-bottom: 10px;
+}
+
+#pantallaInfo::before {
+    mask: linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    backdrop-filter: blur(30px);
+}
+
+#idNum {
+    font-size: 4em;
+    margin: 10px;
+    margin-top: 20px;
+    font-family: monospace;
 }

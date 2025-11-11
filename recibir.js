@@ -19,11 +19,21 @@ var peer = new Peer(pinID);
 const emision = document.getElementById("emision");
 const pantallaInfo = document.getElementById("pantallaInfo");
 const urlPl = document.getElementById("urlPl");
+const YImg = window.screen.availHeight;
+const XImg = window.screen.availWidth;
+const bgImg = document.getElementById("videoContainer");
 
 var pbID = null;
 
 const idNum = document.getElementById("idNum");
 urlHost();
+
+function bgBImg() {
+  bgImg.style.backgroundImage = `url('https://picsum.photos/${XImg}/${YImg}')`;
+  bgImg.style.display = "flex";
+}
+
+bgBImg();
 
 peer.on("open", function (peerID) {
   console.log("PEER ID: " + peerID);
@@ -44,6 +54,8 @@ peer.on("connection", function (conn) {
 
 peer.on("call", function (call) {
   pantallaInfo.style.display = "none";
+  bgImg.style.backgroundImage = "none";
+  emision.style.display = "block";
   call.answer();
   call.on(
     "stream",
@@ -59,12 +71,16 @@ peer.on("call", function (call) {
   call.on("close", function () {
     console.log("Desconectado");
     pantallaInfo.style.display = "flex";
-    emision.srcObject = null; // O un video de espera
+    emision.style.display = "none";
+    bgBImg();
+    emision.srcObject = null;
   });
 
   call.on("error", function (err) {
     console.log("Error: ", err);
     pantallaInfo.style.display = "flex";
+    emision.style.display = "none";
+    bgBImg();
     emision.srcObject = null;
   });
 });
