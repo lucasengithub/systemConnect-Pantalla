@@ -1,5 +1,6 @@
 var peer = new Peer({});
 console.log("v1.1");
+
 const idHold = document.getElementById("idHold");
 const conectar = document.getElementById("conectar");
 const form = document.querySelector("form");
@@ -17,38 +18,38 @@ form.addEventListener("submit", async function (e) {
   }
   console.log("Conectando con " + peerID);
   try {
-    // Obtener stream de pantalla original (sin restricciones)
+    // Captura directa de pantalla (getDisplayMedia)
     var mediaStream = await navigator.mediaDevices.getDisplayMedia({
       video: true,
       audio: false,
     });
 
-    // Extraer la pista de video del stream
+    // Obtener track de video original
     const videoTrack = mediaStream.getVideoTracks()[0];
 
-    // Crear elemento video para reproducir el video capturado (sin mostrar en interfaz)
-    const video = document.createElement("video");
-    video.srcObject = new MediaStream([videoTrack]);
-    await video.play();
+    // Aplicar restricciones iniciales bajas para priorizar rendimiento
+    await videoTrack.applyConstraints({
+      width: 640,
+      height: 360,
+      frameRate: 15,
+    });
 
-    // Crear canvas con resolución inicial baja
-    const canvas = document.createElement("canvas");
-    canvas.width = 640;
-    canvas.height = 360;
-    const ctx = canvas.getContext("2d");
+    // Crear nuevo MediaStream solo con el track modificado
+    const limitedStream = new MediaStream([videoTrack]);
 
-    // Función que dibuja cada frame en el canvas redimensionando el video
-    function drawFrame() {
-      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-      requestAnimationFrame(drawFrame);
-    }
-    drawFrame();
+    // Iniciar la llamada enviando el stream con baja resolución
+    var call = peer.call(peerID, limitedStream);
 
-    // Capturar stream del canvas con 15 FPS (priorizando rendimiento)
-    const canvasStream = canvas.captureStream(15);
-
-    // Realizar la llamada con PeerJS enviando el stream redimensionado
-    var call = peer.call(peerID, canvasStream);
+    // Después de 10 segundos, eliminar las restricciones para que la calidad aumente adaptativamente
+    setTimeout(() => {
+      videoTrack
+        .applyConstraints({
+          width: { ideal: 1920 },
+          height: { ideal: 1080 },
+          frameRate: { ideal: 30 },
+        })
+        .catch((e) => console.warn("No se pudo aumentar la resolución:", e));
+    }, 10000);
 
     call.on("close", function () {
       alert("Se ha perdido la conexión con la pantalla");
