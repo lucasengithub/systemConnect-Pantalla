@@ -15,7 +15,19 @@ function urlHost() {
 }
 
 const pinID = genPin();
-var peer = new Peer(pinID);
+var peer = new Peer(pinID, {
+  config: {
+    iceServers: [
+      { urls: "stun:stun.l.google.com:19302" },
+      { urls: "stun:stun1.l.google.com:19302" },
+      { urls: "stun:stun2.l.google.com:19302" },
+      { urls: "stun:stun3.l.google.com:19302" },
+      { urls: "stun:stun4.l.google.com:19302" },
+      { urls: "stun:stun.services.mozilla.com" },
+      { urls: "turn:turn.example.com:3478", username: "TU_USUARIO", credential: "TU_PASS" }
+    ]
+  }
+});
 const emision = document.getElementById("emision");
 const pantallaInfo = document.getElementById("pantallaInfo");
 const urlPl = document.getElementById("urlPl");
