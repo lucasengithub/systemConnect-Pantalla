@@ -5,25 +5,58 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Enviar Pantalla</title>
         <link rel="stylesheet" href="/estilo.css" />
+        <link rel="icon" type="image/png" href="/favicon.png" />
     </head>
     <body>
-        <h1>Enviar Pantalla</h1>
-        <form>
-            <input id="idHold" placeholder="ID de la pantalla" /><button
-                id="conectar"
-            >
-                Conectar
-            </button>
-        </form>
-        <div>
-            <h3>Google Chrome y derivados ej: Opera, Brave, Edge presentan graves problmas de rendimiento, usa Firefox o Safari./<i style="font-weight: lighter;">Google Chrome and its derivatives (e.g., Opera, Brave, Edge) have serious performance issues, use Firefox or Safari instead.</i></h3>
-            <p>Los navegadores móviles no son compatibles./<i style="font-weight: lighter;">Mobile browsers are not supported.</i></p>
+        <section class="connTarjeta" id="mainCo">
+            <br />
 
-            <br/>
-            <p>No envía audio y no es apto para retransmitir video./<i style="font-weight: lighter;">Does not send audio and is not suitable for video streaming.</i></p>
+            <h1>Enviar Pantalla</h1>
 
-        </body>
-        </div>
+            <form>
+                <input
+                    id="idHold"
+                    autofocus
+                    placeholder="ID"
+                    oninput="soloPerm(this)"
+                    autocomplete="off"
+                />
+                <button id="conectar">Conect(ar)</button>
+            </form>
+
+            <div id="annWindow">
+                <button class="xcirular" onclick="adiosAnnWindow()">×</button>
+                <p>
+                    Los navegadores móviles no son compatibles./<i
+                        style="font-weight: lighter"
+                        >Mobile browsers are not supported.</i
+                    >
+                </p>
+                <p>
+                    No envía audio y no es apto para retransmitir video./<i
+                        style="font-weight: lighter"
+                        >Does not send audio and is not suitable for video
+                        streaming.</i
+                    >
+                </p>
+            </div>
+
+            <section id="cercade">
+                <h3 style="margin-bottom: 0px; padding-bottom: 0px">
+                    En tu misma red/<i style="font-weight: lighter">Nearby</i>
+                </h3>
+                <hr style="background-color: black; box-shadow: none" />
+                <div class="dispBox">
+                    <p>
+                        Esta función no está disponible para tí aún./<i
+                            style="font-weight: lighter"
+                            >This feature is not yet available to you.</i
+                        >
+                    </p>
+                </div>
+            </section>
+        </section>
+    </body>
     <script src="https://unpkg.com/peerjs@1.5.5/dist/peerjs.min.js"></script>
     <script src="/enviar.js"></script>
 </html>

@@ -55,14 +55,14 @@ peer.on("connection", function (conn) {
 peer.on("call", function (call) {
   pantallaInfo.style.display = "none";
   bgImg.style.backgroundImage = "none";
-  emision.style.display = "block";
+  emision.style.opacity = "1";
   call.answer();
+
   call.on(
     "stream",
     function (remoteStream) {
       emision.srcObject = remoteStream;
       emision.play();
-      emision.muted = true;
     },
     function (err) {
       console.log("Failed to get local stream", err);
@@ -72,7 +72,7 @@ peer.on("call", function (call) {
   call.on("close", function () {
     console.log("Desconectado");
     pantallaInfo.style.display = "flex";
-    emision.style.display = "none";
+    emision.style.opacity = 0;
     bgBImg();
     emision.srcObject = null;
   });
@@ -80,7 +80,7 @@ peer.on("call", function (call) {
   call.on("error", function (err) {
     console.log("Error: ", err);
     pantallaInfo.style.display = "flex";
-    emision.style.display = "none";
+    emision.style.opacity = 0;
     bgBImg();
     emision.srcObject = null;
   });
