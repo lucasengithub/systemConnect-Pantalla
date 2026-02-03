@@ -24,9 +24,13 @@ var peer = new Peer(pinID, {
       { urls: "stun:stun3.l.google.com:19302" },
       { urls: "stun:stun4.l.google.com:19302" },
       { urls: "stun:stun.services.mozilla.com" },
-      { urls: "turn:turn.example.com:3478", username: "TU_USUARIO", credential: "TU_PASS" }
-    ]
-  }
+      {
+        urls: "turn:turn.example.com:3478",
+        username: "TU_USUARIO",
+        credential: "TU_PASS",
+      },
+    ],
+  },
 });
 const emision = document.getElementById("emision");
 const pantallaInfo = document.getElementById("pantallaInfo");
@@ -38,7 +42,6 @@ const bgImg = document.getElementById("videoContainer");
 var pbID = null;
 
 const idNum = document.getElementById("idNum");
-urlHost();
 
 function bgBImg() {
   bgImg.style.backgroundImage = `url('https://picsum.photos/${XImg}/${YImg}')`;

@@ -10,9 +10,35 @@
         <section id="pantallaInfo">
             <p id="idNum" onclick="copyNum()">Cargando...</p>
 
-            <b id="urlPl"
-                >https://pantalla.systemconnect.lucaspeinado.es/enviar</b
+            <u id="urlPl">connectnet.es/send </u>
+
+            <section
+                style="
+                    position: fixed;
+                    top: 10px;
+                    left: 10px;
+                    border-radius: 18px;
+                    box-shadow: 0 0 100px rgba(200, 200, 200, 0.5);
+                    width: 400px;
+                    height: 200px;
+                    background-color: rgba(255, 255, 255, 0.5);
+                    z-index: 9999;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: start;
+                    padding: 20px;
+                    backdrop-filter: blur(6px);
+                "
             >
+                <h2>Importante/Important</h2>
+                <p>
+                    SystemConnect se está transformando en connectnet. Puedes
+                    ignorar este mensaje/
+                    <br /><br />SystemConnect is transforming into connectnet.
+                    You can ignore this message.
+                </p>
+            </section>
         </section>
         <section id="videoContainer">
             <video
@@ -22,8 +48,7 @@
                 playsinline
                 loop
                 autoplay
-                oncontextmenu="return false;
-                "
+                oncontextmenu="return false;"
             ></video>
         </section>
     </body>
